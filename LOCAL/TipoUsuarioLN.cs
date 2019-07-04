@@ -29,7 +29,7 @@ namespace LOGICA
         {
             List<TipoUsuario> lista = TipoUsuarioLN.ObtenerTodos();
             TipoUsuario elemento = lista.
-                Where(x => x.tipoID == idTipo).First();
+                Find(x => x.tipoID == idTipo);
             return elemento; 
         }
 

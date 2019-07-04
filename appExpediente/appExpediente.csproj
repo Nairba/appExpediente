@@ -69,6 +69,7 @@
     <Content Include="Content\bootstrap.lux.min.css" />
     <Content Include="packages.config" />
     <Content Include="Registrar_Usuario.aspx" />
+    <Content Include="Registro_de_Usuarios.aspx" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -359,6 +360,13 @@
     </Compile>
     <Compile Include="Registrar_Usuario.aspx.designer.cs">
       <DependentUpon>Registrar_Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_Usuarios.aspx.cs">
+      <DependentUpon>Registro_de_Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro_de_Usuarios.aspx.designer.cs">
+      <DependentUpon>Registro_de_Usuarios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

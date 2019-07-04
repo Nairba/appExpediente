@@ -11,6 +11,7 @@ namespace appExpediente
 {
     public partial class Registrar_Usuario : System.Web.UI.Page
     {
+        public virtual string GroupName { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +24,7 @@ namespace appExpediente
                 ddlTipoUsuario.DataValueField = "tipoID";
                 ddlTipoUsuario.DataTextField = "descripciony";
                 ddlTipoUsuario.DataBind();
-                // ddlTipoUsuario.Items.Insert(0, "Seleccionar tipo");
+               ddlTipoUsuario.Items.Insert(0, "Seleccionar tipo");
                 //Estado  
                 estadoCombo();
             }
@@ -37,6 +38,16 @@ namespace appExpediente
             i = new ListItem("Inactivo", "2");
             ddlEstado.Items.Add(i);
             ddlEstado.Items.Insert(0, "Seleccionar tipo");
+        }
+
+        public void limpiar()
+        {
+            txtCedula.Text = "";
+            txtNombre.Text = "";
+            txtPrimerApellido.Text = "";
+            txtSegundoApellido.Text = "";
+            txtEmail.Text = "";
+            ddlTipoUsuario.SelectedIndex = 0;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -64,12 +75,13 @@ namespace appExpediente
                     {
                         lblSms.Visible = true;
                         lblSms.Text = "Tipo de sexo requerido";
+                        return;
                     }
 
                 }
             }
 
-            if (txtContrasenna.Equals(txtConfirmarContrasenna.Text))
+            if (txtContrasenna.Text== txtConfirmarContrasenna.Text)
             {
                 usuario1.contraqsenna = txtContrasenna.Text;
             }
@@ -77,9 +89,24 @@ namespace appExpediente
             {
                 lblSms2.Visible = true;
                 lblSms2.Text = "Error: La contraseña no coinsiden correctamente";
+                return;
             }
 
-            usuario1.estado = ddlEstado.SelectedValue;
+            int restar = 0;
+            if (ddlEstado.SelectedValue=="2")
+            {
+                restar = 2 - 2;
+                usuario1.estado = restar+"";
+            }
+            else
+            {
+                if (ddlEstado.SelectedValue=="1")
+                {
+                    usuario1.estado = ddlEstado.SelectedValue;
+                }
+            }
+
+           
             usuario1.tipoUsuario.tipoID = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
 
             if (UsuarioLN.Obtener(usuario1.email_ID) == null)
@@ -89,9 +116,11 @@ namespace appExpediente
                 ClientScript.RegisterStartupScript(
                    this.GetType(),
                    "Registro",
-    "mensajeRedirect('Registro de Usuario','Registro de usuario creado!','success','RegistrarUsuario.aspx')",
+    "mensajeRedirect('Registro de Usuario','Usuario registrado correctamente','success','Registrar_Usuario.aspx')",
                    true
                    );
+
+                limpiar();
             }
             else
             {

@@ -27,8 +27,13 @@ namespace LOGICA
                 user.segundo_apellido = row["s_Apellido"].ToString();
                 user.contraqsenna = row["contrasenna"].ToString();
                 user.sexo = row["sexo"].ToString();
-                user.estado = Convert.ToInt32(row["estado"]).ToString();
-                user.tipoUsuario.tipoID = Convert.ToInt32(row["ID_TIPO_USUARIO"]);
+                string estado1= Convert.ToInt32(row["estado"]).ToString();
+                if (estado1.Equals("1"))
+                {
+                    user.estado = "Activo";
+                }
+               
+                user.tipoUsuario = TipoUsuarioLN.Obtener(user.tipoUsuario.tipoID);
                 lista.Add(user);
             }
 
