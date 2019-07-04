@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs" Inherits="appExpediente.Principal" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Colorlib Templates" />
+    <meta name="author" content="Colorlib" />
+    <meta name="keywords" content="Colorlib Templates" />
+
+
+        <!--===============================================================================================-->
+    <link href="iconos/css/open-iconic-foundation.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="Temas/RegistrarUser/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="Temas/RegistrarUser/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="Temas/RegistrarUser/vendor/select2/select2.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="Temas/RegistrarUser/css/main.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="css/estiloComboBox.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+    <script src="Scripts/jquery-3.4.1.js"></script>
+
+    <script src="Scripts/sweetalert2.min.js"></script>
+    <script src="js/mensaje.js"></script>
+   <!-- <link href="Content/bootstrap.lux.min.css" rel="stylesheet" />-->
+    <link href="css/sweetalert2.min.css" rel="stylesheet" />
+
+
+    <title>Expediente</title>
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="col align-self-start">
+                <asp:Menu ID="Menu1" runat="server"
+                    Orientation="Horizontal"
+                    CssClass="nav-item nav-link"
+                    DataSourceID="">
+                    <StaticMenuStyle CssClass="nav-item nav-link" />
+                    <StaticSelectedStyle CssClass="active" />
+                    <DynamicMenuStyle CssClass="dropdown-menu" />
+                    <LevelMenuItemStyles>
+                        <asp:MenuItemStyle CssClass="nav-item nav-link" />
+                        <asp:MenuItemStyle CssClass="nav-item nav-link" />
+                    </LevelMenuItemStyles>
+                </asp:Menu>
+
+            </div>
+
+            <div class="col-auto align-self-end">
+                <span class="navbar-text">Usuario:
+                  <asp:Label ID="lblNombreUsuario"
+                      runat="server" Text=""
+                      Visible="false"
+                      CssClass="btn btn-outline-secondary"></asp:Label>
+                    <asp:LinkButton ID="linkLogout"
+                        runat="server"
+                        Visible="false"
+                        CssClass="btn btn-outline-primary"
+                        OnClick="linkLogout_Click">Cerrar Sesión</asp:LinkButton>
+                </span>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="row justify-content-md-center">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <%--Footer--%>
+            <footer class="border-top">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <small class="d-block mb-3 text-muted">&copy;ISW-711 II-2019</small>
+                        <asp:Label ID="Label1" runat="server"
+                             Text="<%$AppSettings: nombreEstudiante%>"></asp:Label>
+                    </div>
+                </div>
+            </footer>
+            <%--Fin Footer--%>
+        </div>
+
+
+    </form>
+
+    <!--===============================================================================================-->
+    <script src="Temas/RegistrarUser/vendor/jquery/jquery.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="Temas/RegistrarUser/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="Temas/RegistrarUser/vendor/jquery/jquery.js"></script>
+
+</body>
+</html>
