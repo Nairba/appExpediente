@@ -40,7 +40,10 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Registrar usuario</h2>
+                    
+
                     <form id="form1" runat="server" method="POST">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -49,6 +52,14 @@
                                         <asp:TextBox ID="txtNombre" runat="server"
                                             CssClass="input--style-4" name="nombre"></asp:TextBox>
                                         <i class="fi-person input-icon"></i>
+
+                                        <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator1" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtNombre"
+                                            ErrorMessage="Nombre de Usuario requirido."
+                                            Display="Dynamic" ForeColor="Red">  
+                                        </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -58,6 +69,14 @@
                                     <label class="label">Primer apellido</label>
                                     <asp:TextBox ID="txtPrimerApellido" runat="server"
                                         CssClass="input--style-4" name="primerApellido"></asp:TextBox>
+
+                                      <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator2" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtPrimerApellido"
+                                            ErrorMessage="Primer apellido de Usuario requirido."
+                                            Display="Dynamic" ForeColor="Red"  SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -69,6 +88,14 @@
                                     <label class="label">Segundo apellido</label>
                                     <asp:TextBox ID="txtSegundoApellido" runat="server"
                                         CssClass="input--style-4" name="segundoApellido"></asp:TextBox>
+
+                                    <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator3" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtSegundoApellido"
+                                            ErrorMessage="Segundo apellido de Usuario requirido."
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -79,6 +106,24 @@
                                         <asp:TextBox ID="txtCedula" runat="server"
                                             CssClass="input--style-4" name="cedula"></asp:TextBox>
                                         <i class="fi-person input-icon"></i>
+
+                                         <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator4" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtCedula"
+                                            ErrorMessage="Numero de cédula requirido."
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
+
+                                        <asp:RegularExpressionValidator 
+                                            ID="RegularExpressionValidator1" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtCedula"
+                                            ErrorMessage="Numero de cédula tiene que ser numerico."
+                                            ForeColor="Red"
+                                            ValidationExpression="^[0-9]*"
+                                            Display="Dynamic" SetFocusOnError="true">
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
@@ -92,6 +137,24 @@
                                         <asp:TextBox ID="txtEmail" runat="server"
                                             CssClass="input--style-4" name="email"></asp:TextBox>
                                         <i class="fi-envelope-closed input-icon"></i>
+
+                                         <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator5" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtEmail"
+                                            ErrorMessage="Correo electrónico requirido."
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
+                                        
+                                        <asp:RegularExpressionValidator 
+                                            ID="RegularExpressionValidator2" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtEmail"
+                                            ErrorMessage="Formato de correo eletrónico no valido."
+                                            ForeColor="Red"
+                                            ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                            Display="Dynamic" SetFocusOnError="true">
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
@@ -112,6 +175,10 @@
                                                 GroupName="rdSexo" />
                                             <span class="checkmark"></span>
                                         </label>
+                                        <br />
+                                        <br />
+                                        <asp:Label ID="lblSms" runat="server" Text="" 
+                                            Visible="false" ForeColor="Red" SetFocusOnError="true"></asp:Label>
                                     </div>
                                 </div>
                             </div>
@@ -121,11 +188,18 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Tipo de usuario</label>
-
                                     <asp:DropDownList ID="ddlTipoUsuario"
                                         name="tipoUsuario" runat="server"
                                         CssClass="mydropdownlist1">
                                     </asp:DropDownList>
+
+                                  <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator6" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="ddlTipoUsuario"
+                                            ErrorMessage="Seleccionar el tipo de usuario es requerido."
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -136,6 +210,14 @@
                                         name="estado" runat="server"
                                         CssClass="mydropdownlist1">
                                     </asp:DropDownList>
+
+                                    <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator7" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="ddlEstado"
+                                            ErrorMessage="Seleccionar el estado de usuario es requerido."
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -149,6 +231,26 @@
                                             CssClass="input--style-4" name="contrsena"
                                             TextMode="Password"></asp:TextBox>
                                         <i class="fi-key input-icon"></i>
+
+                                        <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator8" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtContrasenna"
+                                            ErrorMessage="Crear contraseña es requerido"
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
+
+                                         <asp:RegularExpressionValidator 
+                                            ID="RegularExpressionValidator3" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtContrasenna"
+                                            ErrorMessage="Formato de contraseña no valido. 
+                                             \n Dede tener almenos una letra mayuscula, minuscula, caracteres especiales y numeros.
+                                             \nTiene que ser mayor a 8 caracteres."
+                                            ForeColor="Red"
+                                            ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$"
+                                            Display="Dynamic" SetFocusOnError="true">
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
@@ -161,9 +263,33 @@
                                             CssClass="input--style-4" name="confirmarContrsena"
                                             TextMode="Password"></asp:TextBox>
                                         <i class="fi-key input-icon"></i>
+
+                                           <asp:RequiredFieldValidator 
+                                            ID="RequiredFieldValidator9" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtConfirmarContrasenna"
+                                            ErrorMessage="Confirmar contraseña es requerido"
+                                            Display="Dynamic" ForeColor="Red" SetFocusOnError="true">  
+                                        </asp:RequiredFieldValidator>
+
+                                         <asp:RegularExpressionValidator 
+                                            ID="RegularExpressionValidator4" 
+                                            runat="server" ValidationGroup="Usuario"
+                                            ControlToValidate="txtContrasenna"
+                                            ErrorMessage="Formato de confirmar contraseña no valido. 
+                                             \n Dede tener almenos una letra mayuscula, minuscula, caracteres especiales y numeros.
+                                             \nTiene que ser mayor a 8 caracteres."
+                                            ForeColor="Red"
+                                            ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$"
+                                            Display="Dynamic" SetFocusOnError="true">
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
+                           
+                           
+                            <asp:Label ID="lblSms2" runat="server" Text="" 
+                                            Visible="false" ForeColor="Red"></asp:Label>
                         </div>
 
                         <div class="row row-space">
