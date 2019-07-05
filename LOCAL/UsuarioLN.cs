@@ -31,10 +31,16 @@ namespace LOGICA
                 if (estado1.Equals("1"))
                 {
                     user.estado = "Activo";
+                }else
+                {
+                    if (estado1.Equals("0"))
+                    {
+                        user.estado = "Inactivo";
+                    }
                 }
-               
+         
                 user.tipoUsuario.tipoID =Convert.ToInt16(row["ID_TIPO_USUARIO"]);
-            //  user.tipoUsuario.descripciony = row["descripcion"].ToString();
+            user.tipoUsuario.descripciony = row["NombreTipoUsuario"].ToString();
                 lista.Add(user);
             }
 

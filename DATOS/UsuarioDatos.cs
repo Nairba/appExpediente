@@ -14,7 +14,7 @@ namespace DATOS
         public static DataSet SeleccionarTodos()
         {
             Database db = DatabaseFactory.CreateDatabase("default");
-            SqlCommand cmd = new SqlCommand("SELECT u.*, t.descripcion AS TipoUsuario "+
+            SqlCommand cmd = new SqlCommand("SELECT u.*, t.descripcion AS NombreTipoUsuario " +
                                               " FROM Usuario u"+
                                               " INNER JOIN Tipo_Usuario t ON t.id = u.ID_TIPO_USUARIO "+
                                               " WHERE u.ID_TIPO_USUARIO= t.id");
