@@ -33,7 +33,8 @@ namespace LOGICA
                     user.estado = "Activo";
                 }
                
-                user.tipoUsuario = TipoUsuarioLN.Obtener(user.tipoUsuario.tipoID);
+                user.tipoUsuario.tipoID =Convert.ToInt16(row["ID_TIPO_USUARIO"]);
+            //  user.tipoUsuario.descripciony = row["descripcion"].ToString();
                 lista.Add(user);
             }
 
