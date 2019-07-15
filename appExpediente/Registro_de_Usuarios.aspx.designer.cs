@@ -175,13 +175,13 @@ namespace appExpediente {
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
         
         /// <summary>
-        /// Control Label8.
+        /// Control lblContrasenna.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lblContrasenna;
         
         /// <summary>
         /// Control txtContrasenna.
@@ -193,13 +193,13 @@ namespace appExpediente {
         protected global::System.Web.UI.WebControls.TextBox txtContrasenna;
         
         /// <summary>
-        /// Control Label9.
+        /// Control lblConfirmarContrasenna.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lblConfirmarContrasenna;
         
         /// <summary>
         /// Control txtConfirmarContrasenna.

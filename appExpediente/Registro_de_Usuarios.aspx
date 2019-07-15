@@ -86,12 +86,12 @@
 
                 <div>
                     <div>
-                        <asp:Label ID="Label8" runat="server" Text="Contraseña"></asp:Label>
+                        <asp:Label ID="lblContrasenna" runat="server" Text="Contraseña"></asp:Label>
                         <asp:TextBox ID="txtContrasenna" runat="server" TextMode="Password"></asp:TextBox>
                     </div>
 
                     <div>
-                        <asp:Label ID="Label9" runat="server" Text="Confirmar Contraseña"></asp:Label>
+                        <asp:Label ID="lblConfirmarContrasenna" runat="server" Text="Confirmar Contraseña"></asp:Label>
                         <asp:TextBox ID="txtConfirmarContrasenna" runat="server" TextMode="Password"></asp:TextBox>
                     </div>
 
@@ -104,6 +104,9 @@
                 <div>
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar"
                         OnClick="btnGuardar_Click" />
+
+                   <%-- <asp:Button ID="btnActualizar" runat="server" Text="Actualizar"
+                        OnClick="btnActualizar_Click"/>--%>
                 </div>
                 <div>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" />
@@ -114,7 +117,8 @@
                 <h4>Lista de Usuarios</h4>
                 <asp:GridView ID="grvListaUsuarios" runat="server"
                     AutoGenerateColumns="false"
-                    OnSelectedIndexChanged="ddlListaUsuarios_SelectedIndexChanged">
+                    OnSelectedIndexChanged="ddlListaUsuarios_SelectedIndexChanged"
+                    OnRowEditing="grvListaUsuarios_RowEditing">                   
                     <Columns>
                        
                         <asp:BoundField DataField="email_ID" HeaderText="Email"></asp:BoundField>

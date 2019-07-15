@@ -20,6 +20,7 @@ namespace appExpediente
                 cargarUsuarios();
                 llenarCombo1();
                 estadoCombo();
+               // btnActualizar.Visible = false;
             }
         }
 
@@ -61,38 +62,99 @@ namespace appExpediente
 
         protected void ddlListaUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = Convert.ToString(grvListaUsuarios.DataKeys(Convert.ToUInt32(e.Comm));
+            ocultar_noEdita_Campos(consultaUsuario(grvListaUsuarios.SelectedRow.Cells[0].Text));
+          //  cambiarBoton1();
+          //  cambiarBoton2();
+        }
 
+        public bool consultaUsuario(string id)
+        {
+            bool bandera = false;
             Usuario userInfo = UsuarioLN.Obtener(id);
             txtNombre.Text = userInfo.nombre;
             txtApellido1.Text = userInfo.primer_apellido;
             txtApellido2.Text = userInfo.segundo_apellido;
             txtCedula.Text = userInfo.identificacion;
             txtEmail.Text = userInfo.email_ID;
-            if (userInfo.sexo== "Masculino")
+            if (userInfo.sexo == "Masculino")
             {
-                rdMasculino.Checked=true;
+                rdFemenino.Checked = false;
+                rdMasculino.Checked = true;
             }
             else
             {
-                if (userInfo.sexo== "Femenino")
+                if (userInfo.sexo == "Femenino")
                 {
+                    rdMasculino.Checked = false;
                     rdFemenino.Checked = true;
                 }
+               
             }
 
-            ddlTipoUsuario.SelectedValue = userInfo.tipoUsuario.descripciony;
-            ddlEstado.SelectedValue = userInfo.estado;
-            ocultarCampos();
-
+            ddlTipoUsuario.SelectedIndex = userInfo.tipoUsuario.tipoID;
+            if (userInfo.estado == "Activo")
+            {
+                ddlEstado.SelectedIndex = 1;
+            }
+            else
+            {
+                if (userInfo.estado == "Inactivo")
+                {
+                    ddlEstado.SelectedIndex = 2;
+                }
+            }
+            return bandera;
         }
 
-        public void ocultarCampos()
+        
+
+        public void ocultar_noEdita_Campos(bool bandera)
         {
+            txtNombre.Enabled = false;
+            txtApellido1.Enabled = false;
+            txtApellido2.Enabled = false;
+            txtCedula.Enabled = false;
+            txtEmail.Enabled = false;
+            if (rdMasculino.Checked==true)
+            {
+                rdFemenino.Enabled = false;
+                rdMasculino.Enabled = true;
+               
+            }else
+            {
+                if (rdFemenino.Checked==true)
+                {
+                    rdMasculino.Enabled = false;
+                    rdFemenino.Enabled = true;
+                }
+               
+            }
+
+            ddlTipoUsuario.Enabled = false;
+            ddlEstado.Enabled = false;
+            lblContrasenna.Visible = false;
+            lblConfirmarContrasenna.Visible = false;
             txtContrasenna.Visible = false;
             txtConfirmarContrasenna.Visible = false;
+
         }
 
+        public void editarCamps(bool bandera)
+        {
+            txtNombre.Enabled = true;
+            txtApellido1.Enabled = true;
+            txtApellido2.Enabled = true;
+            txtCedula.Enabled = true;
+            rdMasculino.Enabled = true;
+            rdFemenino.Enabled = true;
+            ddlTipoUsuario.Enabled = true;
+            ddlEstado.Enabled = true;
+            lblContrasenna.Visible = true;
+            lblConfirmarContrasenna.Visible = true;
+            txtContrasenna.Visible = true;
+            txtConfirmarContrasenna.Visible = true;
+
+        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             Usuario usuario1 = new Usuario();
@@ -170,10 +232,40 @@ namespace appExpediente
                 ClientScript.RegisterStartupScript(
                    this.GetType(),
                    "Carrera",
-    "mensaje('Error de Registro de Usuario','El usuario ya se encuentra registrado en el sistema','warning')",
+    "mensaje('Error de Registro de Usuario','El usuario ya se encuentra registrado en el sistema.','warning')",
                    true
                    );
             }
+        }
+
+        public void cambiarBoton1()
+        {
+            if (grvListaUsuarios.SelectedIndex==8 || grvListaUsuarios.SelectedIndex == 9)
+            {
+               // btnActualizar.Visible = true;
+                btnGuardar.Visible = false;
+            }
+           
+        }
+
+        public void cambiarBoton2()
+        {
+            if (grvListaUsuarios.SelectedIndex == 8 || grvListaUsuarios.SelectedIndex == 9)
+            {
+               // btnActualizar.Visible = false;
+                btnGuardar.Visible = true;
+            }
+           
+        }
+
+        protected void grvListaUsuarios_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            editarCamps(consultaUsuario(grvListaUsuarios.SelectedRow.Cells[0].Text));
+        }
+
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
