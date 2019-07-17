@@ -52,15 +52,13 @@ namespace DATOS
             using (SqlCommand cmd = new SqlCommand(
                 "UPDATE Usuario SET correo=@correo, nombre=@nombre," +
                 "p_Apellido=@p_Apellido, s_Apellido=@s_Apellido," +
-                "contrasenna=@contrasenna,sexo=@sexo,estado=@estado,ID_TIPO_USUARIO=@ID_TIPO_USUARIO" +
+                "sexo=@sexo,estado=@estado,ID_TIPO_USUARIO=@ID_TIPO_USUARIO" +
                 " WHERE correo=@correo"))
             {
-                cmd.Parameters.AddWithValue("@correo", usuario.email_ID);
-                cmd.Parameters.AddWithValue("@cedula", usuario.identificacion);
+                cmd.Parameters.AddWithValue("@correo", usuario.email_ID);               
                 cmd.Parameters.AddWithValue("@nombre", usuario.nombre);
                 cmd.Parameters.AddWithValue("@p_Apellido", usuario.primer_apellido);
-                cmd.Parameters.AddWithValue("@s_Apellido", usuario.segundo_apellido);
-                cmd.Parameters.AddWithValue("@contrasenna", usuario.contraqsenna);
+                cmd.Parameters.AddWithValue("@s_Apellido", usuario.segundo_apellido);              
                 cmd.Parameters.AddWithValue("@sexo", usuario.sexo);
                 cmd.Parameters.AddWithValue("@estado", usuario.estado);
                 cmd.Parameters.AddWithValue("@ID_TIPO_USUARIO", usuario.tipoUsuario.tipoID);

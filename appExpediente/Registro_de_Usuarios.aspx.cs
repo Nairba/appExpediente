@@ -19,8 +19,7 @@ namespace appExpediente
             {
                 cargarUsuarios();
                 llenarCombo1();
-                estadoCombo();
-               // btnActualizar.Visible = false;
+                estadoCombo();  
             }
         }
 
@@ -60,211 +59,159 @@ namespace appExpediente
             ddlTipoUsuario.SelectedIndex = 0;
         }
 
-        protected void ddlListaUsuarios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ocultar_noEdita_Campos(consultaUsuario(grvListaUsuarios.SelectedRow.Cells[0].Text));
-          //  cambiarBoton1();
-          //  cambiarBoton2();
-        }
-
-        public bool consultaUsuario(string id)
-        {
-            bool bandera = false;
-            Usuario userInfo = UsuarioLN.Obtener(id);
-            txtNombre.Text = userInfo.nombre;
-            txtApellido1.Text = userInfo.primer_apellido;
-            txtApellido2.Text = userInfo.segundo_apellido;
-            txtCedula.Text = userInfo.identificacion;
-            txtEmail.Text = userInfo.email_ID;
-            if (userInfo.sexo == "Masculino")
-            {
-                rdFemenino.Checked = false;
-                rdMasculino.Checked = true;
-            }
-            else
-            {
-                if (userInfo.sexo == "Femenino")
-                {
-                    rdMasculino.Checked = false;
-                    rdFemenino.Checked = true;
-                }
-               
-            }
-
-            ddlTipoUsuario.SelectedIndex = userInfo.tipoUsuario.tipoID;
-            if (userInfo.estado == "Activo")
-            {
-                ddlEstado.SelectedIndex = 1;
-            }
-            else
-            {
-                if (userInfo.estado == "Inactivo")
-                {
-                    ddlEstado.SelectedIndex = 2;
-                }
-            }
-            return bandera;
-        }
-
-        
-
-        public void ocultar_noEdita_Campos(bool bandera)
-        {
-            txtNombre.Enabled = false;
-            txtApellido1.Enabled = false;
-            txtApellido2.Enabled = false;
-            txtCedula.Enabled = false;
-            txtEmail.Enabled = false;
-            if (rdMasculino.Checked==true)
-            {
-                rdFemenino.Enabled = false;
-                rdMasculino.Enabled = true;
-               
-            }else
-            {
-                if (rdFemenino.Checked==true)
-                {
-                    rdMasculino.Enabled = false;
-                    rdFemenino.Enabled = true;
-                }
-               
-            }
-
-            ddlTipoUsuario.Enabled = false;
-            ddlEstado.Enabled = false;
-            lblContrasenna.Visible = false;
-            lblConfirmarContrasenna.Visible = false;
-            txtContrasenna.Visible = false;
-            txtConfirmarContrasenna.Visible = false;
-
-        }
-
-        public void editarCamps(bool bandera)
-        {
-            txtNombre.Enabled = true;
-            txtApellido1.Enabled = true;
-            txtApellido2.Enabled = true;
-            txtCedula.Enabled = true;
-            rdMasculino.Enabled = true;
-            rdFemenino.Enabled = true;
-            ddlTipoUsuario.Enabled = true;
-            ddlEstado.Enabled = true;
-            lblContrasenna.Visible = true;
-            lblConfirmarContrasenna.Visible = true;
-            txtContrasenna.Visible = true;
-            txtConfirmarContrasenna.Visible = true;
-
-        }
+       
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            Usuario usuario1 = new Usuario();
-            usuario1.email_ID = txtEmail.Text;
-            usuario1.identificacion = txtCedula.Text;
-            usuario1.nombre = txtNombre.Text;
-            usuario1.primer_apellido = txtApellido1.Text;
-            usuario1.segundo_apellido = txtApellido2.Text;
-
-            if (rdMasculino.GroupName == "rdSexo")
+            if (IsValid)
             {
-                if (rdMasculino.Checked)
+
+
+                Usuario usuario1 = new Usuario();
+                usuario1.email_ID = txtEmail.Text;
+                usuario1.identificacion = txtCedula.Text;
+                usuario1.nombre = txtNombre.Text;
+                usuario1.primer_apellido = txtApellido1.Text;
+                usuario1.segundo_apellido = txtApellido2.Text;
+
+                if (rdMasculino.GroupName == "rdSexo")
                 {
-                    usuario1.sexo = "Masculino";
-                }
-                else
-                {
-                    if (rdFemenino.Checked)
+                    if (rdMasculino.Checked)
                     {
-                        usuario1.sexo = "Femenino";
+                        usuario1.sexo = "Masculino";
                     }
                     else
                     {
-                        lblSms.Visible = true;
-                        lblSms.Text = "Tipo de sexo requerido";
-                        return;
+                        if (rdFemenino.Checked)
+                        {
+                            usuario1.sexo = "Femenino";
+                        }
+                        else
+                        {
+                            lblSms.Visible = true;
+                            lblSms.Text = "Tipo de sexo requerido";
+                            return;
+                        }
+
                     }
-
                 }
-            }
 
-            if (txtContrasenna.Text == txtConfirmarContrasenna.Text)
-            {
-                usuario1.contraqsenna = txtContrasenna.Text;
-            }
-            else
-            {
-                lblSms2.Visible = true;
-                lblSms2.Text = "Error: La contraseña no coinsiden correctamente";
-                return;
-            }
-
-            int restar = 0;
-            if (ddlEstado.SelectedValue == "2")
-            {
-                restar = 2 - 2;
-                usuario1.estado = restar + "";
-            }
-            else
-            {
-                if (ddlEstado.SelectedValue == "1")
+                if (txtContrasenna.Text == txtConfirmarContrasenna.Text)
                 {
-                    usuario1.estado = ddlEstado.SelectedValue;
+                    usuario1.contraqsenna = txtContrasenna.Text;
+                }
+                else
+                {
+                    lblSms2.Visible = true;
+                    lblSms2.Text = "Error: La contraseña no coinsiden correctamente";
+                    return;
+                }
+
+                int restar = 0;
+                if (ddlEstado.SelectedValue == "2")
+                {
+                    restar = 2 - 2;
+                    usuario1.estado = restar + "";
+                }
+                else
+                {
+                    if (ddlEstado.SelectedValue == "1")
+                    {
+                        usuario1.estado = ddlEstado.SelectedValue;
+                    }
+                }
+
+
+                usuario1.tipoUsuario.tipoID = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
+
+                if (UsuarioLN.Obtener(usuario1.email_ID) == null)
+                {
+                    UsuarioLN.Nuevo(usuario1);
+
+                    ClientScript.RegisterStartupScript(
+                       this.GetType(),
+                       "Registro",
+        "mensajeRedirect('Registro de Usuario','Usuario registrado correctamente','success','Registro_de_Usuarios.aspx')",
+                       true
+                       );
+
+                    limpiar();
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(
+                       this.GetType(),
+                       "Carrera",
+        "mensaje('Error de Registro de Usuario','El usuario ya se encuentra registrado en el sistema.','warning')",
+                       true
+                       );
                 }
             }
-
-
-            usuario1.tipoUsuario.tipoID = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
-
-            if (UsuarioLN.Obtener(usuario1.email_ID) == null)
-            {
-                UsuarioLN.Nuevo(usuario1);
-
-                ClientScript.RegisterStartupScript(
-                   this.GetType(),
-                   "Registro",
-    "mensajeRedirect('Registro de Usuario','Usuario registrado correctamente','success','Registro_de_Usuarios.aspx')",
-                   true
-                   );
-
-                limpiar();
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(
-                   this.GetType(),
-                   "Carrera",
-    "mensaje('Error de Registro de Usuario','El usuario ya se encuentra registrado en el sistema.','warning')",
-                   true
-                   );
-            }
-        }
-
-        public void cambiarBoton1()
-        {
-            if (grvListaUsuarios.SelectedIndex==8 || grvListaUsuarios.SelectedIndex == 9)
-            {
-               // btnActualizar.Visible = true;
-                btnGuardar.Visible = false;
-            }
-           
-        }
-
-        public void cambiarBoton2()
-        {
-            if (grvListaUsuarios.SelectedIndex == 8 || grvListaUsuarios.SelectedIndex == 9)
-            {
-               // btnActualizar.Visible = false;
-                btnGuardar.Visible = true;
-            }
-           
+            cargarUsuarios();
         }
 
         protected void grvListaUsuarios_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            editarCamps(consultaUsuario(grvListaUsuarios.SelectedRow.Cells[0].Text));
+            grvListaUsuarios.EditIndex = e.NewEditIndex;
+            cargarUsuarios();
         }
 
-        protected void btnActualizar_Click(object sender, EventArgs e)
+        protected void grvListaUsuarios_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            grvListaUsuarios.EditIndex = -1;
+            cargarUsuarios();
+        }
+
+        protected void grvListaUsuarios_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType== DataControlRowType.DataRow)
+            {
+                DropDownList ddlUserT = (e.Row.FindControl("ddlTipoUsuarioEdit") as DropDownList);
+                DropDownList ddlEstadoEdit = (e.Row.FindControl("ddlEstadoEdit") as DropDownList);
+                DropDownList ddlSexoEdit = (e.Row.FindControl("ddlSexoEdit") as DropDownList);
+
+                if ((e.Row.RowState & DataControlRowState.Edit)>0)
+                {
+                    ddlUserT.DataSource = TipoUsuarioLN.ObtenerTodos();
+                    ddlUserT.DataTextField = "descripciony";
+                    ddlUserT.DataValueField= "tipoID";
+                    ddlUserT.DataBind();
+                    string idTipoUser = (DataBinder.Eval(e.Row.DataItem, "tipoUsuario.tipoID")).ToString();
+                    ddlUserT.SelectedValue = idTipoUser;
+
+                    ddlEstadoEdit.Items.Add(new ListItem("Activo", "1"));
+                    ddlEstadoEdit.Items.Add(new ListItem("Inactivo", "0"));
+                    string idEstado = DataBinder.Eval(e.Row.DataItem, "Estado").ToString();
+                    ddlEstadoEdit.SelectedValue = idEstado == "Activo"? "1" : "0";
+
+                    ddlSexoEdit.Items.Add(new ListItem("Masculino", "Masculino"));
+                    ddlSexoEdit.Items.Add(new ListItem("Femenino", "Femenino"));
+                    string idSexo = DataBinder.Eval(e.Row.DataItem, "Sexo").ToString();
+
+                    ddlSexoEdit.SelectedValue = idSexo.Equals("Masculino") ? "Masculino" : "Femenino";
+                }
+            }
+        }
+
+        protected void grvListaUsuarios_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            Usuario user1 = new Usuario();
+            GridViewRow fila = grvListaUsuarios.Rows[e.RowIndex];
+
+            user1.email_ID = fila.Cells[1].Text;  
+            user1.nombre = ((TextBox)grvListaUsuarios.Rows[e.RowIndex].FindControl("txtNombreEdit")).Text;
+            user1.primer_apellido = ((TextBox)grvListaUsuarios.Rows[e.RowIndex].FindControl("txtApellido1Edit")).Text;
+            user1.segundo_apellido = ((TextBox)grvListaUsuarios.Rows[e.RowIndex].FindControl("txtApellido2Edit")).Text;
+
+            user1.sexo =((DropDownList)grvListaUsuarios.Rows[e.RowIndex].FindControl("ddlSexoEdit")).SelectedValue;
+
+            user1.tipoUsuario.tipoID = Convert.ToInt16(((DropDownList)grvListaUsuarios.Rows[e.RowIndex].FindControl("ddlTipoUsuarioEdit")).SelectedValue);
+
+            int estado = Convert.ToInt16(((DropDownList)grvListaUsuarios.Rows[e.RowIndex].FindControl("ddlEstadoEdit")).SelectedValue);
+            user1.estado = estado == 1 ? "1" : "0";
+
+            UsuarioLN.Modificar(user1);
+            grvListaUsuarios.EditIndex = -1;
+            cargarUsuarios();
 
         }
     }

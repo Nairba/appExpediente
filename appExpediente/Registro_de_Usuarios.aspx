@@ -23,7 +23,7 @@
                     <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
                 </div>
 
-                
+
                 <div>
                     <asp:Label ID="Label10" runat="server" Text="Priemer Apellido"></asp:Label>
                     <asp:TextBox ID="txtApellido1" runat="server"></asp:TextBox>
@@ -104,9 +104,6 @@
                 <div>
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar"
                         OnClick="btnGuardar_Click" />
-
-                   <%-- <asp:Button ID="btnActualizar" runat="server" Text="Actualizar"
-                        OnClick="btnActualizar_Click"/>--%>
                 </div>
                 <div>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" />
@@ -117,22 +114,73 @@
                 <h4>Lista de Usuarios</h4>
                 <asp:GridView ID="grvListaUsuarios" runat="server"
                     AutoGenerateColumns="false"
-                    OnSelectedIndexChanged="ddlListaUsuarios_SelectedIndexChanged"
-                    OnRowEditing="grvListaUsuarios_RowEditing">                   
+                    AutoGenerateEditButton="true"
+                    OnRowEditing="grvListaUsuarios_RowEditing"
+                    OnRowCancelingEdit="grvListaUsuarios_RowCancelingEdit"
+                    OnRowDataBound="grvListaUsuarios_RowDataBound"
+                    OnRowUpdating="grvListaUsuarios_RowUpdating">
                     <Columns>
-                       
-                        <asp:BoundField DataField="email_ID" HeaderText="Email"></asp:BoundField>
-                        <asp:BoundField DataField="identificacion" HeaderText="C&#233;dula"></asp:BoundField>
-                        <asp:BoundField DataField="nombre" HeaderText="Nombre"></asp:BoundField>
-                        <asp:BoundField DataField="primer_apellido" HeaderText="Primer Apellido"></asp:BoundField>
-                        <asp:BoundField DataField="segundo_apellido" HeaderText="Segundo Aepllido"></asp:BoundField>
-                        <asp:BoundField DataField="sexo" HeaderText="Sexo"></asp:BoundField>
-                        <asp:BoundField DataField="tipoUsuario.descripciony" HeaderText="Tipo de Usuario"></asp:BoundField>
-                        <asp:BoundField DataField="estado" HeaderText="Estado"></asp:BoundField>
-                         <asp:CommandField SelectText="Editar" ShowEditButton="true"/>
-                         <asp:CommandField SelectText="Consultar" ShowSelectButton="true" />
-                    </Columns>
+                        <asp:BoundField DataField="email_ID" HeaderText="Email" ReadOnly="true" />
+                        <asp:TemplateField HeaderText="Cédula">
+                            <ItemTemplate>
+                                <asp:Label ID="lblCedula" runat="server" Text='<%#Eval("identificacion")%>'></asp:Label>
+                            </ItemTemplate>                          
+                        </asp:TemplateField>
 
+                        <asp:TemplateField HeaderText="Nombre">
+                            <ItemTemplate>
+                                <asp:Label ID="lblNomre" runat="server" Text='<%#Eval("nombre")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtNombreEdit" runat="server" Text='<%#Eval("nombre")%>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Primer Apellido">
+                            <ItemTemplate>
+                                <asp:Label ID="lblApellido1" runat="server" Text='<%#Eval("primer_apellido")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtApellido1Edit" runat="server" Text='<%#Eval("primer_apellido")%>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Segundo Apellido">
+                            <ItemTemplate>
+                                <asp:Label ID="lblApellido2" runat="server" Text='<%#Eval("segundo_apellido")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtApellido2Edit" runat="server" Text='<%#Eval("segundo_apellido")%>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Sexo">
+                            <ItemTemplate>
+                                <asp:Label ID="lblSexo" runat="server" Text='<%#Eval("sexo")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlSexoEdit" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Tipo de Usuario">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTipoUsuario" runat="server" Text='<%#Eval("tipoUsuario.descripciony")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlTipoUsuarioEdit" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Estado">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEstado" runat="server" Text='<%#Eval("estado")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlEstadoEdit" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
                 </asp:GridView>
             </div>
         </div>
