@@ -67,6 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.lux.min.css" />
+    <Content Include="js\dataTables\dataTables.bootstrap.css" />
+    <Content Include="js\dataTables\dataTables.bootstrap.js" />
+    <Content Include="js\dataTables\jquery.dataTables.js" />
+    <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="packages.config" />
     <Content Include="Registrar_Usuario.aspx" />
     <Content Include="Registro_de_Usuarios.aspx" />
@@ -371,6 +375,7 @@
       <Name>LOCAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
