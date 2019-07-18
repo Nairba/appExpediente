@@ -28,10 +28,22 @@
  
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
-    <script src="Scripts/sweetalert2.min.js"></script>
+    <link href="js/table/pagination-ys.css" rel="stylesheet" />
+
+     <link href="css/sweetalert2.min.css" rel="stylesheet" />
+
+    <link href="js/table/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="js/table/jquery-3.3.1.js"></script>
+
+      <script src="Scripts/sweetalert2.min.js"></script>
     <script src="js/mensaje.js"></script>
+
+  
+
+  
    
-    <link href="css/sweetalert2.min.css" rel="stylesheet" />
+   
 
      
 
@@ -106,14 +118,8 @@
     <!--===============================================================================================-->
     <script src="Temas/RegistrarUser/vendor/jquery/jquery.js"></script>
 
-    <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-       <script src="Scripts/jquery-3.4.1.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.dataTables').dataTable();
-        });
-    </script>
+    <script src="js/table/jquery.dataTables.min.js"></script>
+    <script src="js/table/example.js"></script>
 
 </body>
 </html>

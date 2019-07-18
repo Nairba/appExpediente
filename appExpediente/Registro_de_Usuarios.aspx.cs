@@ -12,6 +12,7 @@ namespace appExpediente
     public partial class Registro_de_Usuarios : System.Web.UI.Page
     {
         public virtual string GroupName { get; set; }
+        private static int paginaTamanno = 10;
 
         protected void Page_Load(object sender, EventArgs e)
         {

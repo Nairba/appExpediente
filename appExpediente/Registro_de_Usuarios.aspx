@@ -119,10 +119,13 @@
                         <div class="card">
                             <div class="card-header bg-dark ">
                                 <h4 class="mb-3 text-white">Lista de Usuarios</h4>
+                                <asp:Label ID="Label8" runat="server" Text="Buscar" CssClass="text-white"></asp:Label>
+                                <asp:TextBox ID="txtBuscar" runat="server"  CssClass="form-control"></asp:TextBox>
+                                <hr />
                             </div>
                             <div class="card-content">
                                 <div class="table-responsive">
-                                    <asp:GridView CssClass="table table-striped table-bordered table-hover dataTables" AlternatingRowStyle-CssClass="odd gradeX" ID="grvListaUsuarios" runat="server"
+                                    <asp:GridView ID="grvListaUsuarios" runat="server"
                                         AutoGenerateColumns="false"
                                         AutoGenerateEditButton="true"
                                         OnRowEditing="grvListaUsuarios_RowEditing"
@@ -192,6 +195,8 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+                                    <div class="Pager">
+                                    </div>
                                 </div>
                             </div>
                         </div>
