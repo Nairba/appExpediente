@@ -1,3 +1,3 @@
 ﻿$(document).ready(function () {
-    $('#grvListaUsuarios').DataTable();
+    $('.myTable').DataTable();
 });

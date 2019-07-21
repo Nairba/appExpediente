@@ -56,6 +56,9 @@ namespace LOGICA
             return usuario1;
         }
 
+
+
+
         public static Usuario Obtener(string id)
         {
             List<Usuario> lista = UsuarioLN.ObtenerTodos();
