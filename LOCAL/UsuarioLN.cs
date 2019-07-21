@@ -56,7 +56,18 @@ namespace LOGICA
             return usuario1;
         }
 
-
+        //FILTRO
+        public static List<Usuario> filtrar(string dato)
+        {
+            List<Usuario> registro = UsuarioLN.ObtenerTodos();
+            IEnumerable<Usuario> listado = registro;
+            if (dato.Length > 0)
+            {
+                listado = registro.Where(x => x.nombre.Contains(dato) || x.primer_apellido.Contains(dato)
+                || x.identificacion.Contains(dato) || x.email_ID.Contains(dato));
+            }
+            return listado.ToList();
+        }
 
 
         public static Usuario Obtener(string id)

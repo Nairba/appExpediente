@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ENTIDADES;
 using LOGICA;
+using System.Data;
 
 namespace appExpediente
 {
@@ -28,7 +29,11 @@ namespace appExpediente
         {
             grvListaUsuarios.DataSource = UsuarioLN.ObtenerTodos();
             grvListaUsuarios.DataBind();
+            
         }
+
+        
+     
 
         public void llenarCombo1() {
 
@@ -60,7 +65,11 @@ namespace appExpediente
             ddlTipoUsuario.SelectedIndex = 0;
         }
 
-       
+       private void filtrarListado()
+        {
+            grvListaUsuarios.DataSource = UsuarioLN.filtrar(txtBuscar.Text);
+            grvListaUsuarios.DataBind();
+        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (IsValid)
@@ -193,6 +202,8 @@ namespace appExpediente
             }
         }
 
+
+
         protected void grvListaUsuarios_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             Usuario user1 = new Usuario();
@@ -214,6 +225,20 @@ namespace appExpediente
             grvListaUsuarios.EditIndex = -1;
             cargarUsuarios();
 
+        }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text.Trim().Length>0)
+            {
+                filtrarListado();
+            }
+        }
+
+        protected void grvListaUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvListaUsuarios.PageIndex = e.NewPageIndex;
+            cargarUsuarios();
         }
     }
 }

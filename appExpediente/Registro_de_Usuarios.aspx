@@ -122,19 +122,24 @@
                                 <div class="input-group mb-3 col-md-3">
                                     
            <asp:TextBox ID="txtBuscar" runat="server"  placeholder="Buscar"
-                                            CssClass="input--style-4" Height="38" name="nombre"></asp:TextBox>
+                                            CssClass="input--style-4" Height="38" name="nombre"
+               OnTextChanged="txtBuscar_TextChanged"></asp:TextBox>
                                         <i class="fi-magnifying-glass input-icon"></i>  
                                 </div>
                         </div>
                         <div class="card-content">
                             <div class="table-responsive">
-                                <asp:GridView ID="grvListaUsuarios" runat="server" CssClass="myTable"
+                                <asp:GridView ID="grvListaUsuarios" runat="server" PageSize="5" AllowPaging="true"
+                                    CssClass="table table-striped table-bordered table-hover dataTablese-str" 
+                                    AlternatingRowStyle-CssClass="odd gradeX"
                                     AutoGenerateColumns="false"
                                     AutoGenerateEditButton="true"
                                     OnRowEditing="grvListaUsuarios_RowEditing"
                                     OnRowCancelingEdit="grvListaUsuarios_RowCancelingEdit"
                                     OnRowDataBound="grvListaUsuarios_RowDataBound"
-                                    OnRowUpdating="grvListaUsuarios_RowUpdating">
+                                    OnRowUpdating="grvListaUsuarios_RowUpdating"
+                                    AllowCustomPaging="false"
+                                    PageIndex="0" OnPageIndexChanging="grvListaUsuarios_PageIndexChanging">
                                     <Columns>
                                         <asp:BoundField DataField="email_ID" HeaderText="Email" ReadOnly="true" />
                                         <asp:TemplateField HeaderText="Cédula">
