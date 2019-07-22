@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaAlergias2lN.cs" />
+    <Compile Include="ConsultaLN.cs" />
     <Compile Include="ConsultorioLN.cs" />
     <Compile Include="EspecilaidadLN.cs" />
     <Compile Include="HorarioLN.cs" />
