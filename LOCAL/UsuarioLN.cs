@@ -20,7 +20,7 @@ namespace LOGICA
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 Usuario user = new Usuario();
-                user.email_ID = row["correo"].ToString();
+                user.email_ID = row["correoID"].ToString();
                 user.identificacion = row["cedula"].ToString();
                 user.nombre = row["nombre"].ToString();
                 user.primer_apellido = row["p_Apellido"].ToString();

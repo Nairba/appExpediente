@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaAlergias2lN.cs" />
+    <Compile Include="ConsultorioLN.cs" />
+    <Compile Include="EspecilaidadLN.cs" />
+    <Compile Include="HorarioLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoUsuarioLN.cs" />
     <Compile Include="UsuarioLN.cs" />

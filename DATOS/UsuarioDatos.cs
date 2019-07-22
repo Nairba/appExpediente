@@ -27,12 +27,12 @@ namespace DATOS
         {
             Database db = DatabaseFactory.CreateDatabase("default");
             using(SqlCommand cmd= new SqlCommand(
-               "INSERT INTO Usuario(correo,cedula,nombre,p_Apellido,s_Apellido,"+
+               "INSERT INTO Usuario(correoID,cedula,nombre,p_Apellido,s_Apellido," +
                "contrasenna,sexo,estado,ID_TIPO_USUARIO) "+
-               "VALUES(@correo,@cedula,@nombre,@p_Apellido,@s_Apellido,"+
+               "VALUES(@correoID,@cedula,@nombre,@p_Apellido,@s_Apellido," +
                "@contrasenna,@sexo,@estado,@ID_TIPO_USUARIO)"))
             {
-                cmd.Parameters.AddWithValue("@correo", usuario.email_ID);
+                cmd.Parameters.AddWithValue("@correoID", usuario.email_ID);
                 cmd.Parameters.AddWithValue("@cedula", usuario.identificacion);
                 cmd.Parameters.AddWithValue("@nombre", usuario.nombre);
                 cmd.Parameters.AddWithValue("@p_Apellido", usuario.primer_apellido);
@@ -50,12 +50,12 @@ namespace DATOS
         {
             Database db = DatabaseFactory.CreateDatabase("default");
             using (SqlCommand cmd = new SqlCommand(
-                "UPDATE Usuario SET correo=@correo, nombre=@nombre," +
+                "UPDATE Usuario SET correoID=@correoID, nombre=@nombre," +
                 "p_Apellido=@p_Apellido, s_Apellido=@s_Apellido," +
                 "sexo=@sexo,estado=@estado,ID_TIPO_USUARIO=@ID_TIPO_USUARIO" +
-                " WHERE correo=@correo"))
+                " WHERE correoID=@correoID"))
             {
-                cmd.Parameters.AddWithValue("@correo", usuario.email_ID);               
+                cmd.Parameters.AddWithValue("@correoID", usuario.email_ID);               
                 cmd.Parameters.AddWithValue("@nombre", usuario.nombre);
                 cmd.Parameters.AddWithValue("@p_Apellido", usuario.primer_apellido);
                 cmd.Parameters.AddWithValue("@s_Apellido", usuario.segundo_apellido);              
